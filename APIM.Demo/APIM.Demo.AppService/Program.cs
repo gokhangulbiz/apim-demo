@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using APIM.Demo.AppService.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ToDoContext>(options =>
+    options.UseInMemoryDatabase("TodoDbInMemory")
+);
 
 // Add services to the container.
 
@@ -12,8 +19,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
